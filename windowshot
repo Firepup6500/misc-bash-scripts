@@ -1,0 +1,3 @@
+#!/bin/bash
+outfile="$HOME/Pictures/$(date +'Screenshot_%Y-%m-%d_%H:%M:%S.%N').png"
+xwd|convert xwd:- "png:$outfile"&&echo "Saved windowshot to $outfile"||echo "Failed to save windowshot"

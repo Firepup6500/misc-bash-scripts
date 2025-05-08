@@ -1,0 +1,57 @@
+#!/bin/bash
+
+TIMESTAMP="$(date +'%Y-%m-%d_%H:%M:%S.%N')"
+OUTDIR="$HOME/Pictures"
+OUTFILE=""
+MODE="screen"
+DELAY=0
+
+while [[ "$#" -gt 0 ]]; do
+    case "$1" in
+        screen|window|region)
+            MODE="$1"
+            ;;
+        -d|--delay)
+            DELAY="$2"
+            shift
+            ;;
+        -h|--help)
+            echo "Usage: $0 [screen|window|region] [--delay seconds]"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "For help, use: $0 --help"
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+[[ "$DELAY" -gt 0 ]] && echo "Sleeping for $DELAY seconds..." && sleep "$DELAY"
+
+case "$MODE" in
+  window)
+	OUTFILE="$OUTDIR/Windowshot_$TIMESTAMP.png"
+    xwd|convert xwd:- "png:$OUTFILE"
+    echo "Saved window screenshot to $OUTFILE"
+    ;;
+  screen|"" )
+	OUTFILE="$OUTDIR/Screenshot_$TIMESTAMP.png"
+    xwd -root|convert xwd:- "png:$OUTFILE"
+    echo "Saved full screenshot to $OUTFILE"
+    ;;
+  region)
+	OUTFILE="$OUTDIR/Regionshot_$TIMESTAMP.png"
+    import "png:$OUTFILE"
+    ;;
+esac
+
+if [[ -f "$OUTFILE" ]]; then
+  echo "Saved screenshot to $OUTFILE"
+  notify-send "Screenshot saved" "$OUTFILE"
+  xclip -selection clipboard -t image/png -i "$OUTFILE"
+else
+  echo "Failed to save screenshot"
+  notify-send "Failed to save screenshot"
+fi
