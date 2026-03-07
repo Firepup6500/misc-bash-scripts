@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "== !! == primary             == !! =="
 CLIP=$(xclip -selection primary -o)
 echo -n $CLIP
