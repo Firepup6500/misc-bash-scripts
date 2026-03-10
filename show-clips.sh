@@ -1,17 +1,17 @@
-#!/bin/bash
-echo "== !! == primary             == !! =="
+#!/bin/env bash
+printf "== !! == primary             == !! ==\n"
 CLIP=$(xclip -selection primary -o)
-echo -n $CLIP
-[[ "$CLIP" == "12" ]]&&echo "== !! == Trailing newline    == !! =="||[[ "$CLIP" == "" ]]&&echo "== !! == Clip is NULL        == !! =="||echo -e "\n== !! == No trailing newline == !! =="
-echo "== !! == secondary           == !! =="
+printf $CLIP
+[[ "$CLIP" == "12" ]] && printf "== !! == Trailing newline    == !! ==\n" || [[ "$CLIP" == "" ]] && printf "== !! == Clip is NULL        == !! ==\n" || printf "\n== !! == No trailing newline == !! ==\n"
+printf "== !! == secondary           == !! ==\n"
 CLIP=$(xclip -selection secondary -o)
-echo -n $CLIP
-[[ "$CLIP" == "12" ]]&&echo "== !! == Trailing newline    == !! =="||[[ "$CLIP" == "" ]]&&echo "== !! == Clip is NULL        == !! =="||echo -e "\n== !! == No trailing newline == !! =="
-echo "== !! == clipboard           == !! =="
+printf $CLIP
+[[ "$CLIP" == "12" ]] && printf "== !! == Trailing newline    == !! ==\n" || [[ "$CLIP" == "" ]] && printf "== !! == Clip is NULL        == !! ==\n" || printf "\n== !! == No trailing newline == !! ==\n"
+printf "== !! == clipboard           == !! ==\n"
 CLIP=$(xclip -selection clipboard -o)
-echo -n $CLIP
-[[ "$CLIP" == "12" ]]&&echo "== !! == Trailing newline    == !! =="||[[ "$CLIP" == "" ]]&&echo "== !! == Clip is NULL        == !! =="||echo -e "\n== !! == No trailing newline == !! =="
-echo "== !! == cut-buffer          == !! =="
+printf $CLIP
+[[ "$CLIP" == "12" ]] && printf "== !! == Trailing newline    == !! ==\n" || [[ "$CLIP" == "" ]] && printf "== !! == Clip is NULL        == !! ==\n" || printf "\n== !! == No trailing newline == !! ==\n"
+printf "== !! == cut-buffer          == !! ==\n"
 CLIP=$(xclip -selection cut-buffer -o)
-echo -n $CLIP
-[[ "$CLIP" == "12" ]]&&echo "== !! == Trailing newline    == !! =="||[[ "$CLIP" == "" ]]&&echo "== !! == Clip is NULL        == !! =="||echo -e "\n== !! == No trailing newline == !! =="
+printf $CLIP
+[[ "$CLIP" == "12" ]] && printf "== !! == Trailing newline    == !! ==\n" || [[ "$CLIP" == "" ]] && printf "== !! == Clip is NULL        == !! ==\n" || printf "\n== !! == No trailing newline == !! ==\n"
