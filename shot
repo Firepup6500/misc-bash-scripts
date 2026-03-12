@@ -33,7 +33,7 @@ done
 case "$MODE" in
   window)
 	OUTFILE="$OUTDIR/Windowshot_$TIMESTAMP.png"
-    xwd|convert xwd:- "png:$OUTFILE"
+    xwd -frame|convert xwd:- "png:$OUTFILE"
     echo "Saved window screenshot to $OUTFILE"
     ;;
   screen|"" )
