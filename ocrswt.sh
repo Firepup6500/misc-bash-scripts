@@ -1,3 +1,7 @@
+if [ "$1" == "--help" ];then
+  echo "$0 <hostname> <'root'|any string> <command>"
+  exit 0
+fi
 if [ "$2" == "root" ];then
   evelator="sudo -i "
 fi
