@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 unset SUDO
 
 error() {
   ERR=$?
   echo "Error: Failed to setup repo, please check above logs!"
-  exit $?
+  exit $ERR
 }
 
 trap 'error' ERR

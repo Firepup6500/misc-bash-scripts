@@ -1,4 +1,5 @@
-#!/bin/env bash
+#!/usr/bin/env bash
+
 while true;do
   read -r up _ < /proc/uptime
   s=${up%.*}

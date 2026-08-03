@@ -1,2 +1,3 @@
-#!/bin/env bash
-chmod a+x *sh
+#!/usr/bin/env bash
+
+chmod a+x -- *sh

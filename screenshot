@@ -1,3 +1,0 @@
-#!/bin/bash
-outfile="$HOME/Pictures/$(date +'Screenshot_%Y-%m-%d_%H:%M:%S.%N').png"
-xwd -root|convert xwd:- "png:$outfile"&&echo "Saved screenshot to $outfile"||echo "Failed to save screenshot"

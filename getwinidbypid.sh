@@ -8,7 +8,7 @@
 #
 # Taken from: https://stackoverflow.com/a/44073873
 
-while IFS= read line; do
+while IFS= read -r line; do
   if [[ "${line}" =~ (0x)([0-9a-z]+)([ ][- ][0-9]+[ ])([0-9]*) ]]; then
     winId="${BASH_REMATCH[1]}${BASH_REMATCH[2]}"
     pid="${BASH_REMATCH[4]}"

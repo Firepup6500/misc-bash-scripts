@@ -1,4 +1,5 @@
-#!/bin/env bash
+#!/usr/bin/env bash
+
 read -r up _ < /proc/uptime
 s=${up%.*}
 d=$((s/86400))

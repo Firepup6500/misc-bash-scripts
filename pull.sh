@@ -1,8 +1,8 @@
-#!/bin/env bash
-for i in $(\ls);do
-  cd $i &> /dev/null
-  if [[ "$?" == "0" ]];then
-    printf "pulling $i...\n"
+#!/usr/bin/env bash
+
+for i in *;do
+  if cd "$i" &> /dev/null;then
+    printf "pulling %s...\n" "$i"
     git pull
     cd ..
   fi
