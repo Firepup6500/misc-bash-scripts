@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 if [ -d .git-hooks ]; then
   printf 'Hooks!\n'
 else
