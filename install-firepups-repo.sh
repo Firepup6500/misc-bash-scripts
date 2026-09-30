@@ -3,7 +3,7 @@
 unset SUDO
 
 error() {
-  ERR=$?
+  local ERR=$?
   echo "Error: Failed to setup repo, please check above logs!"
   exit $ERR
 }
