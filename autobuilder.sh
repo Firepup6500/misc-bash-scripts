@@ -14,7 +14,7 @@ while IFS='#' read -r name dir cmds_str extra; do
   # shellcheck disable=SC2016 # We don't want `%s` to expand, thanks shellcheck.
   printf 'Now building %s from %s with commands `%s`\n' "$name" "$dir" "$cmds_str"
   IFS=';' read -ra cmds <<< "$cmds_str"
-  if ! echo cd "$dir" &>/dev/null;then
+  if ! cd "$dir" &>/dev/null;then
     printf 'Error: Cannot cd into %s to build %s, skipping\n' "$dir" "$name" >&2
     continue
   fi
