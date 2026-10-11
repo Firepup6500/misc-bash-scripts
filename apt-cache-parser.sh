@@ -40,6 +40,7 @@ apt-cache-parser() {
             if [ "${line_item: -1}" == ")" ];then
               mapfile -t -d ' ' line_data < <(printf '%s' "$line_item")
               line_item="${line_data[2]:0:-1}"
+              # See apt-pkg/pkgcache.h in apt's git repo
               case "${line_data[1]:1}" in
                 "1") line_op="<=";;
                 "2") line_op=">=";;
