@@ -146,7 +146,7 @@ apt-cache-parser() {
 _acp-complete() {
   local CWORD="${COMP_WORDS[COMP_CWORD]}"
   if [ "$COMP_CWORD" -eq 1 ];then
-    mapfile -t COMPREPLY < <(compgen -W 'Package Versions "Reverse Depends" Dependencies Provides "Reverse Provides"' -- "$CWORD")
+    mapfile -t COMPREPLY < <(compgen -W '"Breaks" "Conflicts" "Depends" "PreDepends" "Provides" "Recommends" "Reverse Depends" "Reverse Provides" "Suggests"' -- "$CWORD")
   elif [ "$COMP_CWORD" -eq 2 ];then
     if [ "$CWORD" == "" ];then
       mapfile -t COMPREPLY < <(apt-cache pkgnames)
@@ -156,9 +156,39 @@ _acp-complete() {
   fi
 }
 
-# Taken from https://github.com/bahamas10/bash-jsonvar/blob/main/jsonvar.bash
+_acp-alias-complete() {
+  local CWORD="${COMP_WORDS[COMP_CWORD]}"
+  if [ "$COMP_CWORD" -eq 1 ];then
+    if [ "$CWORD" == "" ];then
+      mapfile -t COMPREPLY < <(apt-cache pkgnames)
+    else
+      mapfile -t COMPREPLY < <(apt-cache pkgnames --all-names -- "$CWORD")
+    fi
+  fi
+
+}
+
+# If statement taken from https://github.com/bahamas10/bash-jsonvar/blob/main/jsonvar.bash
 if ( return 0 &>/dev/null ); then
   complete -F _acp-complete apt-cache-parser
+  complete -F _acp-alias-complete breaks
+  alias breaks='apt-cache-parser Breaks'
+  complete -F _acp-alias-complete confls
+  alias confls='apt-cache-parser Conflicts'
+  complete -F _acp-alias-complete deps
+  alias deps='apt-cache-parser Depends'
+  complete -F _acp-alias-complete pdeps
+  alias pdeps='apt-cache-parser PreDepends'
+  complete -F _acp-alias-complete provs
+  alias provs='apt-cache-parser Provides'
+  complete -F _acp-alias-complete recs
+  alias recs='apt-cache-parser Recommends'
+  complete -F _acp-alias-complete rdeps
+  alias rdeps='apt-cache-parser "Reverse Depends"'
+  complete -F _acp-alias-complete rprovs
+  alias rprovs='apt-cache-parser "Reverse Provides"'
+  complete -F _acp-alias-complete suggs
+  alias suggs='apt-cache-parser Suggests'
 else
   apt-cache-parser "$@"
 fi
